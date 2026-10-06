@@ -1,49 +1,454 @@
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-html {
-  height: 100%;
-}
-
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
-
-body {
-  min-height: 100%;
-  display: flex;
-  flex-direction: column;
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+@import url("https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap");
 
 * {
   box-sizing: border-box;
-  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: "Prompt", sans-serif;
+  background:
+    radial-gradient(circle at 10% 10%, #ede9fe 0, transparent 28%),
+    radial-gradient(circle at 90% 20%, #dbeafe 0, transparent 25%),
+    #f8fafc;
+  color: #172033;
+}
+
+
+/* =========================
+   Main
+========================= */
+
+main {
+  width: min(1150px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 55px 0 80px;
+}
+
+
+/* =========================
+   Header
+========================= */
+
+main>header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 30px;
+}
+
+main>header h1 {
   margin: 0;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+main>header>div {
+  text-align: right;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+h1 {
+  margin: 0;
+  font-size: clamp(32px, 5vw, 52px);
+  line-height: 1.15;
+  font-weight: 700;
+  letter-spacing: -1px;
+  background: linear-gradient(135deg, #7c3aed, #2563eb);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+
+/* =========================
+   Buttons
+========================= */
+
+button {
+  border: 0;
+  border-radius: 14px;
+  padding: 12px 20px;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  color: white;
+  background: linear-gradient(135deg, #7c3aed, #4f46e5);
+  box-shadow: 0 8px 20px rgba(79, 70, 229, 0.25);
+  transition: 0.25s ease;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 25px rgba(79, 70, 229, 0.35);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+
+/* =========================
+   Intro
+========================= */
+
+main>p {
+  margin: -25px 0 35px;
+  color: #64748b;
+  font-size: 16px;
+}
+
+
+/* =========================
+   Product Grid
+========================= */
+
+main>div {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  width: 100%;
+}
+
+
+/* =========================
+   Product Card
+========================= */
+
+main>div>article {
+  background: white;
+  border: 1px solid #e5ddff;
+  border-radius: 16px;
+  padding: 18px;
+  margin: 0;
+  box-shadow: 0 6px 18px rgba(100, 70, 180, 0.1);
+  transition: 0.2s ease;
+}
+
+main>div>article:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(100, 70, 180, 0.16);
+}
+
+
+/* =========================
+   Product Image
+========================= */
+
+main>div>article img {
+  width: 100%;
+  height: 180px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto 15px;
+  border-radius: 12px;
+}
+
+
+/* =========================
+   Product Information
+========================= */
+
+main>div>article h2 {
+  margin: 0 0 10px;
+  font-size: 21px;
+  font-weight: 600;
+  color: #1e1b4b;
+}
+
+main>div>article p {
+  margin: 8px 0;
+  color: #64748b;
+  line-height: 1.7;
+}
+
+
+/* =========================
+   Price
+========================= */
+
+main>div>article p:last-of-type {
+  margin-top: 18px;
+  font-size: 23px;
+  font-weight: 700;
+  color: #6d28d9;
+}
+
+
+/* =========================
+   Links
+========================= */
+
+a {
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+
+/* =========================
+   Edit / Delete Buttons
+========================= */
+
+main>div>article>div {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+main>div>article>div a {
+  display: inline-block;
+  padding: 7px 16px;
+  border-radius: 9px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+main>div>article>div a:first-child {
+  color: #6d3df5;
+  border: 1px solid #6d3df5;
+  background: #f7f3ff;
+}
+
+main>div>article>div a:last-child {
+  color: #e5395f;
+  border: 1px solid #e5395f;
+  background: #fff3f5;
+}
+
+main>div>article>div a:hover {
+  transform: translateY(-2px);
+}
+
+
+/* =========================
+   Login Area
+========================= */
+
+form {
+  margin: 0;
+}
+
+
+/* =========================
+   Edit Product Page
+========================= */
+
+main>form {
+  width: min(500px, 90%);
+  margin: 60px auto;
+  padding: 30px;
+  background: white;
+  border: 1px solid #e5ddff;
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(100, 70, 180, 0.12);
+}
+
+main>form h1 {
+  margin-top: 0;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+main>form label {
+  display: block;
+  margin-top: 16px;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+main>form input,
+main>form textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 12px;
+  border: 1px solid #d8d0ef;
+  border-radius: 9px;
+  font-family: inherit;
+  font-size: 16px;
+  outline: none;
+  background: #faf9ff;
+}
+
+main>form input:focus,
+main>form textarea:focus {
+  border-color: #6d3df5;
+  box-shadow: 0 0 0 3px rgba(109, 61, 245, 0.12);
+}
+
+main>form textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+main>form button,
+main>form a {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+main>form button {
+  border: none;
+  background: #6542e8;
+  color: white;
+  box-shadow: 0 6px 15px rgba(101, 66, 232, 0.25);
+}
+
+main>form a {
+  margin-left: 10px;
+  color: #6542e8;
+  background: #f5f1ff;
+  border: 1px solid #d8cfff;
+}
+
+main>form button:hover,
+main>form a:hover {
+  transform: translateY(-2px);
+}
+
+
+/* =========================
+   Mobile
+========================= */
+
+@media (max-width: 900px) {
+  main>div {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 650px) {
+  main {
+    width: min(100% - 28px, 1150px);
+    padding-top: 35px;
+  }
+
+  main>header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  main>header>div {
+    text-align: left;
+  }
+
+  h1 {
+    font-size: 36px;
+  }
+
+  main>div {
+    grid-template-columns: 1fr;
+  }
+
+  main>div>article {
+    padding: 16px;
+  }
+
+  button {
+    width: 100%;
+  }
+}
+
+/* =========================
+   Delete Product Page
+   ========================= */
+
+main.deletePage {
+  max-width: 600px;
+  margin: 80px auto;
+  padding: 40px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 24px;
+  box-shadow: 0 15px 40px rgba(80, 60, 160, 0.15);
+}
+
+main.deletePage h1 {
+  margin: 0 0 20px;
+  font-size: 2.2rem;
+  line-height: 1.3;
+  color: #673ab7;
+}
+
+main.deletePage p {
+  margin: 0 0 30px;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #555;
+}
+
+main.deletePage>div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}
+
+main.deletePage form {
+  margin: 0;
+}
+
+main.deletePage button,
+main.deletePage a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 130px;
+  height: 46px;
+  padding: 0 20px;
+  border-radius: 12px;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+main.deletePage button {
+  border: none;
+  background: #7c3aed;
+  color: white;
+}
+
+main.deletePage a {
+  background: #f3f0ff;
+  color: #673ab7;
+}
+
+main.deletePage button:hover {
+  background: #6d28d9;
+}
+
+main.deletePage a:hover {
+  background: #e9e3ff;
+}
+
+@media (max-width: 600px) {
+  main.deletePage {
+    margin: 40px 16px;
+    padding: 30px 20px;
+  }
+
+  main.deletePage h1 {
+    font-size: 1.8rem;
+  }
+
+  main.deletePage>div {
+    flex-direction: column;
+  }
+
+  main.deletePage button,
+  main.deletePage a {
+    width: 100%;
   }
 }

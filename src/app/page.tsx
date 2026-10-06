@@ -1,69 +1,58 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import Link from "next/link";
+import { auth } from "@/auth";
+import { getProducts } from "@/lib/products";
+import { AuthButtons } from "./auth-buttons";
 
-export default function Home() {
+export default async function HomePage() {
+  const session = await auth();
+  const products = getProducts();
+
+  // แปลงค่าเป็น true หรือ false
+  const isLoggedIn = !!session?.user;
+
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+    <main>
+      <header>
+        <div>
+          <h1>สินค้า</h1>
+        </div>
+
+        <AuthButtons
+          isLoggedIn={isLoggedIn}
+          userName={session?.user?.name}
         />
-        <div className={styles.intro}>
-          <h1>
-            To get started, edit the{" "}
-            <code className={styles.code}>page.tsx</code> file.
-          </h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
+      </header>
+
+      <div>
+        {products.map((product) => (
+          <article key={product.id} data-testid="product">
+            <img
+              src={product.image}
+              alt={product.name}
             />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+
+            <h2>{product.name}</h2>
+
+            <p>{product.description}</p>
+
+            <p>฿{product.price.toLocaleString("th-TH")}</p>
+
+            {isLoggedIn && (
+              <div>
+                <Link href={`/products/${product.id}/edit`}>
+                  แก้ไข
+                </Link>
+
+                <Link href={`/products/${product.id}/delete`}>
+                  ลบ
+                </Link>
+              </div>
+            )}
+          </article>
+        ))}
+
+        {products.length === 0 && <p>ไม่มีสินค้า</p>}
+      </div>
+    </main>
   );
 }
