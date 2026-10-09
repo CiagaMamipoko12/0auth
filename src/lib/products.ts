@@ -9,17 +9,17 @@ export type Product = {
 const initialProducts: Product[] = [
     {
         id: "p001",
-        name: "มาสคาร่า Essence Lash Princess",
+        name: "Essence Mascara Lash Princess",
         price: 9.99,
         description:
-            "มาสคาร่า Essence Lash Princess ช่วยเพิ่มความหนาและความยาวให้ขนตา",
+            "มาสคาร่า ช่วยเพิ่มความหนาและความยาวให้ขนตา",
         image:
             "https://cdn.dummyjson.com/product-images/beauty/essence-mascara-lash-princess/1.webp",
     },
 
     {
         id: "p002",
-        name: "พาเลทอายแชโดว์พร้อมกระจก",
+        name: "Eyeshadow Palette with Mirror",
         price: 19.99,
         description:
             "พาเลทอายแชโดว์พร้อมกระจก มีเฉดสีหลากหลายสำหรับแต่งตา",
